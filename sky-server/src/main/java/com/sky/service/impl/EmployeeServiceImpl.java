@@ -2,7 +2,6 @@ package com.sky.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
@@ -24,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -47,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         //1、根据用户名查询数据库中的数据
         Employee employee = employeeMapper.getByUsername(username);
 
-        //2、处理各种异常情况（用户名不存在、密码不对、账号被锁定）
+        //2.处理各种异常情况（用户名不存在、密码不对、账号被锁定）
         if (employee == null) {
             //账号不存在
             throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);
@@ -99,6 +97,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
         PageResult pageResult = new PageResult(page.getTotal(), page.getResult());
         return pageResult;
+    }
+
+    @Override
+    public void updateStatus(Integer status, Long id) {
+        Employee employee=new Employee();
+        employee.setStatus(status);
+        employee.setId(id);
+        employeeMapper.updateStatus(employee);
     }
 
 
