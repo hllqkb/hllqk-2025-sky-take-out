@@ -1,34 +1,38 @@
 package com.sky.service.impl;
 import cn.hutool.core.bean.BeanUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.encryption.Myencryption;
 import com.sky.entity.Employee;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
 import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
+import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
-
-
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;
-    @Autowired
-    private Myencryption myencryption;
 
     /**
      * 员工登录
@@ -85,4 +89,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.insert(employee);
         return Result.success(MessageConstant.REGISTER_SUCCESS);
     }
+
+    //分页查询
+    @Override
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+        //开始分页查询
+        PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getSize());
+
+        Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
+        PageResult pageResult = new PageResult(page.getTotal(), page.getResult());
+        return pageResult;
+    }
+
+
 }
