@@ -76,12 +76,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         BeanUtil.copyProperties(employeeDTO, employee);
         employee.setStatus(StatusConstant.ENABLE);
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        //获取创建用户ID
-
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
         //密码加密
         employee.setPassword(Myencryption.encrypt(PasswordConstant.DEFAULT_PASSWORD));
         employeeMapper.insert(employee);
@@ -95,8 +89,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getSize());
 
         Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
-        PageResult pageResult = new PageResult(page.getTotal(), page.getResult());
-        return pageResult;
+        return new PageResult(page.getTotal(), page.getResult());
     }
 
     @Override
@@ -116,8 +109,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void update(EmployeeDTO employeeDTO) {
         Employee e=new Employee();
         BeanUtil.copyProperties(employeeDTO,e);
-        e.setUpdateTime(LocalDateTime.now());
-        e.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.updateStatus(e);
     }
 
