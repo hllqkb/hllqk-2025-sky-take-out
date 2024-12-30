@@ -6,3 +6,9 @@ sky:
     database: sky_take_out
     username: root
     password: root
+  alioss:
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    access-key-id: LTAI5tFjTrHPEa5FhqeeCLVg
+    access-key-secret: YwWrE0P0ZpggQxPgmNIjer3DGKsAmw
+    bucket-name: hllqk
+    cdn-domain: cdn.hllqk.cn

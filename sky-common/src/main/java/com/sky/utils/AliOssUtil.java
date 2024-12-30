@@ -18,6 +18,7 @@ public class AliOssUtil {
     private String accessKeyId;
     private String accessKeySecret;
     private String bucketName;
+    private String cdnDomain;
 
     /**
      * 文件上传
@@ -60,7 +61,9 @@ public class AliOssUtil {
                 .append(endpoint)
                 .append("/")
                 .append(objectName);
-
+        if(cdnDomain!= null && !cdnDomain.isEmpty()){
+            //TODO cdn域名加速
+        }
         log.info("文件上传到:{}", stringBuilder.toString());
 
         return stringBuilder.toString();
