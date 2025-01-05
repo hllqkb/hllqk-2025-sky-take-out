@@ -62,7 +62,7 @@ public class AliOssUtil {
                 .append("/")
                 .append(objectName);
         if(cdnDomain!= null && !cdnDomain.isEmpty()){
-            //TODO cdn域名加速
+            //cdn域名加速
         }
         log.info("文件上传到:{}", stringBuilder.toString());
 

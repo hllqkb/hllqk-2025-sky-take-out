@@ -12,3 +12,8 @@ sky:
     access-key-secret: YwWrE0P0ZpggQxPgmNIjer3DGKsAmw
     bucket-name: hllqk
     cdn-domain: cdn.hllqk.cn
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
