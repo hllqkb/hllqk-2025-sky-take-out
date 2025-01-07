@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         //如果是老用户，则更新用户信息
         //将用户信息保存到数据库
         //返回用户信息
-        return null;
+        return user;
     }
     private String getOpenid(String code) {
         //微信登录实现逻辑
@@ -63,7 +63,6 @@ public class UserServiceImpl implements UserService {
         map.put("grant_type", "authorization_code");
         String json = HttpClientUtil.doGet(WX_LOGIN_URL, map);
         JSONObject jsonObject = JSONObject.parseObject(json);
-        String openid = jsonObject.getString("openid");
-        return openid;
+        return jsonObject.getString("openid");
     }
 }

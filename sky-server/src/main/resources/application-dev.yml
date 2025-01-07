@@ -8,8 +8,8 @@ sky:
     password: root
   alioss:
     endpoint: oss-cn-shanghai.aliyuncs.com
-    access-key-id: LTAI5tFjTrHPEa5FhqeeCLVg
-    access-key-secret: YwWrE0P0ZpggQxPgmNIjer3DGKsAmw
+    access-key-id: L666TAI5tFjTrHPEa5FhqeeCLVg
+    access-key-secret: Y666wWrE0P0ZpggQxPgmNIjer3DGKsAmw
     bucket-name: hllqk
     cdn-domain: cdn.hllqk.cn
   redis:
@@ -18,5 +18,5 @@ sky:
     password: 123456
     database: 0
   wechat:
-    app-id: wxe3ef25ff4f3d811c
-    app-secret: 823251b5dc29515860c5d6e518beb9c0
+    appid: wxe3ef25ff4f3d811c
+    secret: dcb656bc717ad24be6a70b8e75679dc9

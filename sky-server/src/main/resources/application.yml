@@ -56,5 +56,5 @@ sky:
     bucket-name: ${sky.alioss.bucket-name}
     cdn-domain: ${sky.alioss.cdn-domain}
   wechat:
-    app-id: ${sky.wechat.app-id}
-    app-secret: ${sky.wechat.app-secret}
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.appsecret}
