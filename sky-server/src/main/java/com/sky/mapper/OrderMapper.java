@@ -5,7 +5,6 @@ import com.sky.dto.GoodsSalesDTO;
 import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.Orders;
 import com.sky.vo.OrderStatisticsVO;
-import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -68,4 +67,10 @@ public interface OrderMapper {
 
     //销量排名统计(前10)
     List<GoodsSalesDTO> getSalesTop10(LocalDateTime begin,LocalDateTime end);
+
+    /**
+     * 查询超时订单
+     * */
+    @Select("select * from orders where status=#{status} and order_time<#{orderTime}")
+    List<Orders> updateOrderStatus(Integer status, LocalDateTime orderTime);
 }
