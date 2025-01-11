@@ -398,7 +398,7 @@ public class OrderServiceImpl implements OrderService {
         map.put("type",2); //1表示来单提醒，2表示客户催单
         map.put("orderId",id);
         map.put("content","订单号:"+ordersDB.getNumber());
-        webSocketServer.sendToAllClient(JSON.toJSONString(map));
+        webSocketServer.sendToAllClient(JSON.toJSONString(map));//向所有客户端推送消息
     }
 
 

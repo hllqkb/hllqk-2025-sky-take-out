@@ -44,4 +44,18 @@ public class OrderController {
         log.info("模拟交易成功,{}",ordersPaymentDTO.getOrderNumber());
         return Result.success(orderPaymentVO);
     }
+    @PostMapping("/repetition/{id}")
+    @ApiOperation("再来一单")
+    public Result repetition(@PathVariable Long id){
+        log.info("再来一单:{}",id);
+        orderService.again(id);
+        return Result.success();
+    }
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("催单")
+    public Result reminder(@PathVariable Long id){
+        log.info("催单:{}",id);
+        orderService.reminder(id);
+        return Result.success();
+    }
 }
