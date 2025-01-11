@@ -7,27 +7,42 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
+
+/**
+ * #author hllqkb
+ * #class 物联网2401
+ * #student_number 6020242411
+ */
+
 @Mapper
 public interface ShoppingCartMapper {
-    List<ShoppingCart> list(ShoppingCart cart);
 
-    /**
-     * 根据id更新购物车
-     *
-     * @param sc
-     */
-    @Update("UPDATE shopping_cart SET number = #{number} WHERE id = #{id}")
-    void updateNumberById(ShoppingCart sc);
+    //动态条件查询
+    List<ShoppingCart> list(ShoppingCart shoppingCart);
 
-    /**
-     * 批量插入购物车
-     *
-     * @param cart
-     */
-    @Insert("INSERT INTO shopping_cart (name, user_id, dish_id, setmeal_id, dish_flavor, number, amount, image, create_time) " +
-            "VALUES (#{name}, #{userId}, #{dishId}, #{setmealId}, #{dishFlavor}, #{number}, #{amount}, #{image}, #{createTime})")
-    void insert(ShoppingCart cart);
+    //根据id修改商品数量
+    @Update("update shopping_cart set number=#{number} where id=#{id}")
+    void updateNumberById(ShoppingCart shoppingCart);
 
-    @Delete("DELETE FROM shopping_cart WHERE id = #{id}")
+
+    //插入购物车数据
+    @Insert("insert into shopping_cart (name, image, user_id, dish_id, setmeal_id, dish_flavor, amount, create_time) " +
+            "VALUES (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{amount},#{createTime})")
+    void insert(ShoppingCart shoppingCart);
+
+    /*
+     * 根据用户id来删除购物车数据
+     * */
+    @Delete("delete from shopping_cart where user_id=#{userId}")
+    void deleteByUserId(Long userId);
+
+    //动态删除数据
     void delete(ShoppingCart shoppingCart);
+
+    /**
+     * 批量插入购物车数据
+     *
+     * @param shoppingCartList
+     */
+    void insertBatch(List<ShoppingCart> shoppingCartList);
 }
