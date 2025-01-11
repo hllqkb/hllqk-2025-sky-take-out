@@ -1,13 +1,16 @@
 package com.sky.service;
 
 import com.sky.dto.ShoppingCartDTO;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import com.sky.entity.ShoppingCart;
+
+import java.util.List;
 
 public interface ShoppingCartService {
     /**
      *  添加购物车
      * @param dto
      */
-    void add(ShoppingCartDTO dto);
+    void add(ShoppingCartDTO dto);//添加购物车
+
+    List<ShoppingCart> showShoppingCart();//查看购物车
 }
