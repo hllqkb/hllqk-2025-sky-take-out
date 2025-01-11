@@ -148,8 +148,8 @@ public class DishController {
      * @param pattern
      */
     private void clearCache(String pattern) {
-//        Set keys = redisTemplate.keys(pattern);
-//        redisTemplate.delete(keys);
+        Set keys = redisTemplate.keys(pattern);
+        redisTemplate.delete(keys);
     }
 
 }

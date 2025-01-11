@@ -1,35 +1,33 @@
 package com.sky.mapper;
 
+import com.github.pagehelper.Page;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.SetmealDish;
+import com.sky.vo.SetmealVO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * #author hllqkb
+ * #class 物联网2401
+ * #student_number 6020242411
+ */
 @Mapper
 public interface SetmealDishMapper {
-    /**
-     * 判断当前菜品是否被套餐关联了
-     * @param ids
-     * @return
-     */
-    List<Long> getSetmealIdsByDishIds(List<Long> ids);
 
-    /**
-     * 保存套餐和菜品的关联关系
-     * @param setmealDishes
-     */
-    void insertBatch(List<SetmealDish> setmealDishes);
+    //根据菜品id，查询套餐id
+    List<Long> getSetmealIdsByDishIds(List<Long> dishIds);
 
-    /**
-     * 删除套餐餐品关系表中的数据
-     * @param id
-     */
-    void deleteBySetmaleId(Long id);
+    void insert(SetmealDish setmealDish);
 
-    /**
-     * 根据套餐信息查询菜品信息
-     * @param id
-     * @return
-     */
-    List<SetmealDish> getBySetmealId(Long id);
+    //删除套餐菜品关系表中的数据
+    @Delete("delete from setmeal_dish where setmeal_id=#{setmealId} ")
+    void deleteBySetmealId(Long setmealId);
+
+
+    @Select("select * from setmeal_dish where setmeal_id=#{setmealId}")
+    List<SetmealDish> getBySetmealId(Long setmealId);
 }
